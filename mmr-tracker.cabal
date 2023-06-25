@@ -1,0 +1,149 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.35.2.
+--
+-- see: https://github.com/sol/hpack
+
+name:           mmr-tracker
+version:        0.1.0.0
+build-type:     Simple
+data-files:
+    resources/migrations/0000-initialize-db.sql
+
+library
+  exposed-modules:
+      MMRTracker
+      MMRTracker.Database
+      MMRTracker.Database.Migration
+      MMRTracker.Database.Model.GameResult
+      MMRTracker.Database.Model.User
+      MMRTracker.Server
+      MMRTracker.Server.Monad
+      MMRTracker.Server.Options
+      MMRTracker.Server.Routes
+      MMRTracker.Server.Stylesheet
+      MMRTracker.Server.View
+  other-modules:
+      Paths_mmr_tracker
+  hs-source-dirs:
+      src
+  default-extensions:
+      BlockArguments
+      DataKinds
+      GeneralizedNewtypeDeriving
+      LambdaCase
+      OverloadedStrings
+      RecordWildCards
+      StrictData
+      TypeFamilies
+  ghc-options: -Wall -Wcompat -Wextra
+  build-depends:
+      base >=4.14 && <5
+    , bytestring
+    , filepath >=1.4.100
+    , fmt
+    , hasql
+    , hasql-migration
+    , hasql-transaction
+    , http-media
+    , lucid2
+    , monad-control
+    , optparse-applicative
+    , rel8
+    , resource-pool
+    , servant
+    , servant-lucid2
+    , servant-server
+    , text
+    , time
+    , transformers
+    , uuid
+    , warp
+  default-language: GHC2021
+
+executable mmr-tracker-server
+  main-is: Main.hs
+  other-modules:
+      Paths_mmr_tracker
+  hs-source-dirs:
+      server
+  default-extensions:
+      BlockArguments
+      DataKinds
+      GeneralizedNewtypeDeriving
+      LambdaCase
+      OverloadedStrings
+      RecordWildCards
+      StrictData
+      TypeFamilies
+  ghc-options: -Wall -Wcompat -Wextra -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.14 && <5
+    , bytestring
+    , filepath >=1.4.100
+    , fmt
+    , hasql
+    , hasql-migration
+    , hasql-transaction
+    , http-media
+    , lucid2
+    , mmr-tracker
+    , monad-control
+    , optparse-applicative
+    , rel8
+    , resource-pool
+    , servant
+    , servant-lucid2
+    , servant-server
+    , text
+    , time
+    , transformers
+    , uuid
+    , warp
+  default-language: GHC2021
+
+test-suite mmr-tracker-spec
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      MMRTracker.Server.OptionsSpec
+      Paths_mmr_tracker
+  hs-source-dirs:
+      spec
+  default-extensions:
+      BlockArguments
+      DataKinds
+      GeneralizedNewtypeDeriving
+      LambdaCase
+      OverloadedStrings
+      RecordWildCards
+      StrictData
+      TypeFamilies
+  ghc-options: -Wall -Wcompat -Wextra -threaded -rtsopts -with-rtsopts=-N
+  build-tool-depends:
+      hspec-discover:hspec-discover
+  build-depends:
+      base >=4.14 && <5
+    , bytestring
+    , filepath >=1.4.100
+    , fmt
+    , hasql
+    , hasql-migration
+    , hasql-transaction
+    , hspec
+    , http-media
+    , lucid2
+    , mmr-tracker
+    , monad-control
+    , optparse-applicative
+    , rel8
+    , resource-pool
+    , servant
+    , servant-lucid2
+    , servant-server
+    , text
+    , time
+    , transformers
+    , uuid
+    , warp
+  default-language: GHC2021

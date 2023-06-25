@@ -1,0 +1,73 @@
+name: mmr-tracker
+version: 0.1.0.0
+
+language: GHC2021
+
+ghc-options:
+  - -Wall
+  - -Wcompat
+  - -Wextra
+
+dependencies:
+  - base >= 4.14 && < 5
+  - bytestring
+  - filepath >= 1.4.100
+  - fmt
+  - hasql
+  - hasql-migration
+  - hasql-transaction
+  - http-media
+  - lucid2
+  - monad-control
+  - optparse-applicative
+  - rel8
+  - resource-pool
+  - servant
+  - servant-lucid2
+  - servant-server
+  - text
+  - transformers
+  - warp
+  - uuid
+  - time
+
+default-extensions:
+  - BlockArguments
+  - DataKinds
+  - GeneralizedNewtypeDeriving
+  - LambdaCase
+  - OverloadedStrings
+  - RecordWildCards
+  - StrictData
+  - TypeFamilies
+
+data-files:
+  - resources/migrations/*.sql
+
+library:
+  source-dirs: src
+
+executables:
+  mmr-tracker-server:
+    main: Main.hs
+    source-dirs: server
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - mmr-tracker
+
+tests:
+  mmr-tracker-spec:
+    main: Spec.hs
+    source-dirs: spec
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    build-tools:
+      - hspec-discover
+    dependencies:
+      - mmr-tracker
+      - hspec

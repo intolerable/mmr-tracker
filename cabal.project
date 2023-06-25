@@ -1,0 +1,23 @@
+with-compiler: ghc-9.2
+
+packages: .
+
+tests: True
+test-options:
+  "--color"
+  "--diff"
+  "--format=specdoc"
+test-show-details: streaming
+
+jobs: $ncpus
+optimization: False
+
+source-repository-package
+  type: git
+  location: https://github.com/intolerable/servant-lucid2.git
+  tag: 5913d65c051c881576ef69826da30c0b6c486782
+
+source-repository-package
+  type: git
+  location: https://github.com/intolerable/servant-htmx.git
+  tag: 68db70b7d9b226d5071a68558e1c98f8df97cbd0
